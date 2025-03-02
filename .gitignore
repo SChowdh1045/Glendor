@@ -1,2 +1,5 @@
 venv/
-Google Colab Backup/
+models/
+OLD_main.py
+requirements.txt
+scenarios.py

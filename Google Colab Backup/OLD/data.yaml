@@ -1,0 +1,13 @@
+names:
+- face
+- non-face
+nc: 2
+roboflow:
+  license: CC BY 4.0
+  project: face-detection-operating-room
+  url: https://universe.roboflow.com/bachelor-thesis-ymaax/face-detection-operating-room/dataset/7
+  version: 7
+  workspace: bachelor-thesis-ymaax
+test: Face-Detection-(Operating-Room)-7/test/images
+train: Face-Detection-(Operating-Room)-7/train/images
+val: Face-Detection-(Operating-Room)-7/valid/images

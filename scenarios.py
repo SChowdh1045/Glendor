@@ -42,7 +42,7 @@ from ultralytics import YOLO
 
 
 
-########## MediaPipe on video clips ##########
+# ######### MediaPipe on video clips ##########
 # def detect_faces(video_path):
 #     # Initialize MediaPipe Face Detection
 #     mp_face_detection = mp.solutions.face_detection
@@ -98,51 +98,46 @@ from ultralytics import YOLO
 
 
 
-# if __name__ == '__main__':
-#     detect_faces_mediapipe('./videos/3.mp4')
 
-
-
-
-########## PURE YOLO (without Supervision) ##########
-# def detect_faces(video_path):
-#     # Load YOLOv8 model
-#     model = YOLO('yolov8n.pt')
+######### PURE YOLO (without Supervision) ##########
+def detect_faces(video_path):
+    # Load YOLOv8 model
+    model = YOLO('./models/yolov8n.pt')
     
-#     cap = cv2.VideoCapture(video_path)
-#     # frame_time = 1/30  # 30 FPS
+    cap = cv2.VideoCapture(video_path)
+    # frame_time = 1/30  # 30 FPS
     
-#     while cap.isOpened():
-#         start_time = time.time()
-#         ret, frame = cap.read()
-#         if not ret:
-#             break
+    while cap.isOpened():
+        start_time = time.time()
+        ret, frame = cap.read()
+        if not ret:
+            break
 
-#         # Resizing frame for better performance
-#         scale_percent = 40
-#         width = int(frame.shape[1] * scale_percent / 100)
-#         height = int(frame.shape[0] * scale_percent / 100)
-#         frame = cv2.resize(frame, (width, height), interpolation=cv2.INTER_AREA)
+        # Resizing frame for better performance
+        scale_percent = 40
+        width = int(frame.shape[1] * scale_percent / 100)
+        height = int(frame.shape[0] * scale_percent / 100)
+        frame = cv2.resize(frame, (width, height), interpolation=cv2.INTER_AREA)
 
-#         # Detect people (class 0 is person)
-#         results = model(frame, classes=[0])  # only detect people
+        # Detect people (class 0 is person)
+        results = model(frame, classes=[0])  # only detect people
         
-#         # Draw the results on the frame
-#         annotated_frame = results[0].plot()
+        # Draw the results on the frame
+        annotated_frame = results[0].plot()
         
-#         # Display the frame
-#         cv2.imshow('Person Detection', annotated_frame)
+        # Display the frame
+        cv2.imshow('Person Detection', annotated_frame)
         
-#         # # Control FPS
-#         # processing_time = time.time() - start_time
-#         # wait_time = max(1, int((frame_time - processing_time) * 1000))
+        # # Control FPS
+        # processing_time = time.time() - start_time
+        # wait_time = max(1, int((frame_time - processing_time) * 1000))
         
-#         if cv2.waitKey(1) & 0xFF == ord('q'):
-#             break
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
 
-#     cap.release()
-#     cv2.destroyAllWindows()
+    cap.release()
+    cv2.destroyAllWindows()
 
 
 if __name__ == '__main__':
-    detect_faces()
+    detect_faces('./videos/3.mp4')

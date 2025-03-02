@@ -1,1 +1,8 @@
-opencv-python mediapipe torch numpy pandas requests ultralytics supervision
+opencv-python
+torch
+numpy
+pandas
+requests
+ultralytics
+supervision
+mediapipe
